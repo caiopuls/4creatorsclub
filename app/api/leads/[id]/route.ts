@@ -4,9 +4,11 @@ import { createClient } from "@supabase/supabase-js";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     const supabase = await createServerClient();
     const {
       data: { user },
@@ -23,7 +25,7 @@ export async function DELETE(
     const { error } = await supabaseAdmin
       .from("leads")
       .delete()
-      .eq("id", params.id);
+      .eq("id", id);
 
     if (error) {
       console.error("Erro ao deletar lead:", error);
@@ -45,9 +47,11 @@ export async function DELETE(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     const supabase = await createServerClient();
     const {
       data: { user },
@@ -72,7 +76,7 @@ export async function PATCH(
         instagram: instagram?.trim() || null,
         whatsapp: whatsapp?.trim() || null,
       })
-      .eq("id", params.id)
+      .eq("id", id)
       .select()
       .single();
 
