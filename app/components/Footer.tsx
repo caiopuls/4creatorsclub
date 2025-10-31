@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -15,8 +13,19 @@ export default function Footer() {
           <p className="text-xs text-[#a9a9a9]">
             Junte-se a dezenas de empresários e creators de sucesso.
           </p>
-          <div className="text-sm text-[#bdbdbd] mt-2">
-            © {currentYear} 4Creators Club. Todos os direitos reservados.
+          <div className="flex flex-wrap items-center gap-4 mt-4">
+            <div className="text-sm text-[#bdbdbd]">
+              © {currentYear} 4Creators Club. Todos os direitos reservados.
+            </div>
+            <div className="flex gap-4 text-xs text-[#a9a9a9]">
+              <a href="/politica-de-privacidade" className="hover:text-white transition-colors">
+                Política de Privacidade
+              </a>
+              <span className="text-[#2a2a2a]">|</span>
+              <a href="/termos-de-uso" className="hover:text-white transition-colors">
+                Termos de Uso
+              </a>
+            </div>
           </div>
         </div>
       </div>

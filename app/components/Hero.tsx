@@ -26,6 +26,8 @@ export default function Hero({ onOpenModal }: HeroProps) {
     let animationId: number | null = null;
     let scrollX = 0;
     let singleSetWidth = 0;
+    let isUserInteracting = false;
+    let lastScrollLeft = 0;
 
     const calculateWidth = () => {
       if (container.children.length === 0) return false;
@@ -47,20 +49,75 @@ export default function Hero({ onOpenModal }: HeroProps) {
         }
       }
 
-      scrollX += 0.4;
-      
-      if (scrollX >= singleSetWidth) {
-        scrollX = 0;
+      // Se o usuário não está interagindo, continua o scroll automático
+      if (!isUserInteracting) {
+        scrollX += 0.4;
+        
+        if (scrollX >= singleSetWidth) {
+          scrollX = 0;
+        }
+        
+        container.scrollLeft = scrollX;
+        lastScrollLeft = scrollX;
+      } else {
+        // Quando o usuário está interagindo, sincroniza scrollX com a posição atual
+        // para continuar de onde parou quando soltar
+        const currentScroll = container.scrollLeft;
+        if (Math.abs(currentScroll - lastScrollLeft) > 5) {
+          scrollX = currentScroll;
+          lastScrollLeft = currentScroll;
+        }
       }
       
-      container.scrollLeft = scrollX;
       animationId = requestAnimationFrame(scroll);
+    };
+
+    // Detecta quando o usuário está interagindo
+    const handleMouseDown = () => {
+      isUserInteracting = true;
+    };
+
+    const handleMouseUp = () => {
+      isUserInteracting = false;
+      scrollX = container.scrollLeft;
+    };
+
+    const handleTouchStart = () => {
+      isUserInteracting = true;
+    };
+
+    const handleTouchEnd = () => {
+      isUserInteracting = false;
+      scrollX = container.scrollLeft;
+    };
+
+    const handleScroll = () => {
+      // Detecta scroll manual
+      if (Math.abs(container.scrollLeft - lastScrollLeft) > 2) {
+        isUserInteracting = true;
+        scrollX = container.scrollLeft;
+        
+        // Para de interagir após um tempo sem scroll manual
+        clearTimeout((window as any).scrollTimeout);
+        (window as any).scrollTimeout = setTimeout(() => {
+          isUserInteracting = false;
+        }, 150);
+      }
     };
 
     const initScroll = () => {
       if (calculateWidth()) {
         container.scrollLeft = 0;
         scrollX = 0;
+        lastScrollLeft = 0;
+        
+        // Adiciona event listeners
+        container.addEventListener('mousedown', handleMouseDown);
+        container.addEventListener('mouseup', handleMouseUp);
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchend', handleTouchEnd);
+        container.addEventListener('scroll', handleScroll);
+        
         animationId = requestAnimationFrame(scroll);
       } else {
         setTimeout(initScroll, 100);
@@ -72,9 +129,17 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
     return () => {
       clearTimeout(timeoutId);
+      if ((window as any).scrollTimeout) {
+        clearTimeout((window as any).scrollTimeout);
+      }
       if (animationId !== null) {
         cancelAnimationFrame(animationId);
       }
+      container.removeEventListener('mousedown', handleMouseDown);
+      container.removeEventListener('mouseup', handleMouseUp);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -98,11 +163,23 @@ export default function Hero({ onOpenModal }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight text-center mb-4 md:mb-6"
         >
-          Clube privado para{" "}
-          <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
-            creators
-          </span>{" "}
-          do mercado digital
+          <span 
+            className="inline-block bg-clip-text text-transparent"
+            style={{
+              backgroundImage: 'linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #888888 50%, #ffffff 65%, #ffffff 100%)',
+              backgroundSize: '300% 100%',
+              animation: 'shimmer 10s ease-in-out infinite',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundPosition: '0% 50%'
+            }}
+          >
+            Clube privado para{" "}
+            <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
+              creators
+            </span>{" "}
+            do mercado digital
+          </span>
         </motion.h1>
 
         {/* Lead */}
