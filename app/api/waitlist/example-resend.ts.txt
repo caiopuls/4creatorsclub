@@ -1,0 +1,113 @@
+/**
+ * EXEMPLO DE INTEGRAÇÃO COM RESEND
+ * 
+ * Para usar este código:
+ * 1. npm install resend
+ * 2. Configure sua chave de API no .env.local
+ * 3. Descomente o código no route.ts
+ * 4. Insira seu email de destino
+ */
+
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function sendWaitlistEmail(data: {
+  name: string;
+  email: string;
+  handle?: string;
+  whatsapp?: string;
+}) {
+  try {
+    const result = await resend.emails.send({
+      from: "4Creators Club <noreply@4creatorsclub.com>", // Configure seu domínio no Resend
+      to: "seu-email@exemplo.com", // SEU EMAIL AQUI
+      subject: `Nova inscrição: ${data.name}`,
+      html: `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+              .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+              .field { margin-bottom: 15px; }
+              .label { font-weight: bold; color: #555; }
+              .value { color: #333; }
+              .footer { text-align: center; margin-top: 20px; color: #777; font-size: 12px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>🎉 Nova Inscrição na Lista de Espera</h1>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <div class="label">Nome:</div>
+                  <div class="value">${data.name}</div>
+                </div>
+                <div class="field">
+                  <div class="label">Email:</div>
+                  <div class="value">${data.email}</div>
+                </div>
+                ${data.handle ? `
+                <div class="field">
+                  <div class="label">Instagram:</div>
+                  <div class="value">${data.handle}</div>
+                </div>
+                ` : ""}
+                ${data.whatsapp ? `
+                <div class="field">
+                  <div class="label">WhatsApp:</div>
+                  <div class="value">${data.whatsapp}</div>
+                </div>
+                ` : ""}
+                <div class="field">
+                  <div class="label">Data:</div>
+                  <div class="value">${new Date().toLocaleString("pt-BR")}</div>
+                </div>
+              </div>
+              <div class="footer">
+                <p>4Creators Club - Lista de Espera</p>
+              </div>
+            </div>
+          </body>
+        </html>
+      `,
+      text: `Nova inscrição na lista de espera:
+
+Nome: ${data.name}
+Email: ${data.email}
+${data.handle ? `Instagram: ${data.handle}` : ""}
+${data.whatsapp ? `WhatsApp: ${data.whatsapp}` : ""}
+Data: ${new Date().toLocaleString("pt-BR")}`,
+    });
+
+    return result;
+  } catch (error) {
+    console.error("Erro ao enviar email:", error);
+    throw error;
+  }
+}
+
+/**
+ * ALTERNATIVAS DE INTEGRAÇÃO:
+ * 
+ * 1. ZAPIER / MAKE
+ * Envie um webhook para esses serviços e configure automações
+ * 
+ * 2. GOOGLE SHEETS API
+ * Salve os dados diretamente em uma planilha
+ * 
+ * 3. NOTION API
+ * Crie um banco de dados no Notion e sincronize
+ * 
+ * 4. SENDGRID
+ * Similar ao Resend, mas com mais funcionalidades
+ * 
+ * 5. EMAILJS
+ * Solução sem backend, envio direto do cliente
+ */
