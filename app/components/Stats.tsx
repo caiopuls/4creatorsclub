@@ -6,17 +6,18 @@ import { useEffect, useRef, useState } from "react";
 interface Stat {
   label: string;
   value: string;
+  prefix?: string;
   suffix?: string;
 }
 
 const stats: Stat[] = [
-  { label: "Creators na Lista", value: "180", suffix: "+" },
-  { label: "Conteúdos Gravados", value: "60", suffix: "+" },
-  { label: "Cases Reais de Creators", value: "18", suffix: "+" },
-  { label: "Softwares com Desconto", value: "12", suffix: "+" },
+  { label: "Startups Cadastradas", value: "12", prefix: "+ " },
+  { label: "Freelancers Ativos", value: "38", prefix: "+ " },
+  { label: "Vagas Abertas", value: "120", prefix: "+ " },
+  { label: "Conteúdos Gravados", value: "50", prefix: "+ " },
 ];
 
-function AnimatedCounter({ value, suffix }: { value: string; suffix?: string }) {
+function AnimatedCounter({ value, prefix, suffix }: { value: string; prefix?: string; suffix?: string }) {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -60,7 +61,7 @@ function AnimatedCounter({ value, suffix }: { value: string; suffix?: string }) 
 
   return (
     <div ref={ref} className="text-5xl md:text-6xl font-extrabold">
-      {Math.floor(count)}{suffix}
+      {prefix}{Math.floor(count)}{suffix}
     </div>
   );
 }
@@ -86,7 +87,7 @@ export default function Stats() {
               className="text-center"
             >
               <div className="text-[#dedede] opacity-90 text-sm mb-2">{stat.label}</div>
-              <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
             </motion.div>
           ))}
         </motion.div>

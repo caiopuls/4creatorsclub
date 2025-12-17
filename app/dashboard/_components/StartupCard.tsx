@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Rocket, TrendingUp, DollarSign } from 'lucide-react'
 import { ImageCarousel } from './ImageCarousel'
 import { FavoriteButton } from './FavoriteButton'
+import UserBadge from '@/app/components/UserBadge'
 
 // Formatters
 const formatCurrency = (val: number) => {
@@ -93,6 +94,8 @@ export function StartupCard({ startup, isFavorite = false, hideFavorite = false 
                         <span className="text-sm text-zinc-400 truncate">
                             {startup.profiles.full_name}
                         </span>
+                        {/* Assuming profiles might have role now, checking broadly */}
+                        <UserBadge role={(startup.profiles as any).role} />
                     </div>
                 )}
 

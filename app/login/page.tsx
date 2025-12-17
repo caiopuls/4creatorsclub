@@ -55,9 +55,7 @@ export default function LoginPage() {
                 <div className="text-center">
                     <h1 className="text-4xl font-bold tracking-tighter mb-2">4C Jobs</h1>
                     <p className="text-zinc-400">
-                        {mode === 'signin'
-                            ? 'Acesse o marketplace exclusivo para membros.'
-                            : 'Crie sua conta para acessar oportunidades.'}
+                        Acesse o marketplace exclusivo para membros.
                     </p>
                 </div>
 
@@ -99,7 +97,7 @@ export default function LoginPage() {
                     >
                         {loading ? <Loader2 className="animate-spin" /> : (
                             <>
-                                {mode === 'signin' ? 'Entrar' : 'Criar Conta'}
+                                Entrar
                                 <ArrowRight size={18} />
                             </>
                         )}
@@ -107,21 +105,10 @@ export default function LoginPage() {
                 </form>
 
                 <div className="text-center text-sm text-zinc-500">
-                    {mode === 'signin' ? (
-                        <>
-                            Ainda não tem conta?{' '}
-                            <button onClick={() => setMode('signup')} className="text-white hover:underline">
-                                Inscreva-se
-                            </button>
-                        </>
-                    ) : (
-                        <>
-                            Já tem conta?{' '}
-                            <button onClick={() => setMode('signin')} className="text-white hover:underline">
-                                Fazer Login
-                            </button>
-                        </>
-                    )}
+                    Ainda não é membro?{' '}
+                    <Link href="/" className="text-white hover:underline">
+                        Aplicar para o 4C Club
+                    </Link>
                 </div>
             </div>
         </div>

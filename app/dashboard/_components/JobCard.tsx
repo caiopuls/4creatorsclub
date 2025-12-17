@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Briefcase, DollarSign, Clock } from 'lucide-react'
 import { ImageCarousel } from './ImageCarousel'
 import { FavoriteButton } from './FavoriteButton'
+import UserBadge from '@/app/components/UserBadge'
 
 // Formatters
 const formatCurrency = (val: number) => {
@@ -133,7 +134,7 @@ export function JobCard({ job, isFavorite = false, hideFavorite = false }: JobCa
                     </div>
                 </div>
 
-                {/* User Info with Agency Badge */}
+                {/* User Info with Badge */}
                 {job.profiles && (
                     <div className="flex items-center gap-2 mb-4">
                         <div className="h-6 w-6 rounded-full bg-zinc-800 overflow-hidden flex-shrink-0">
@@ -151,11 +152,10 @@ export function JobCard({ job, isFavorite = false, hideFavorite = false }: JobCa
                                     ? job.profiles.company_name
                                     : job.profiles.full_name}
                             </span>
-                            {job.profiles.profile_type === 'agency' && (
-                                <div className="bg-purple-500/20 text-purple-400 text-[10px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider border border-purple-500/20">
-                                    Agency
-                                </div>
-                            )}
+
+                            {/* Prioritize 'role' (Founder/Admin), then 'profile_type' (Agency) */}
+                            <UserBadge role={job.profiles.role} />
+                            {job.profiles.profile_type === 'agency' && <UserBadge role="agency" showLabel={true} />}
                         </div>
                     </div>
                 )}
