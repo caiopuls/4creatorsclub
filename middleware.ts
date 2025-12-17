@@ -48,12 +48,26 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/admin', request.url))
   }
 
+  // Proteger rotas /dashboard (que inclui jobs e startups)
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!user) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+  }
+
+  // Redirecionar para /dashboard se já estiver logado
+  if (request.nextUrl.pathname === '/login' && user) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
+
   return response
 }
 
 export const config = {
   matcher: [
     '/admin/:path*',
+    '/dashboard/:path*',
+    '/login',
   ],
 }
 
