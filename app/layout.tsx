@@ -9,10 +9,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "4Creators Club — Lista de Espera",
+  title: "4Creators Club | Dashboard",
   description:
-    "Entre na lista de espera gratuita do 4Creators Club (4C Club). Conteúdos secretos para viralizar, criar autoridade e vender no digital. Conecte-se com creators, editores, designers e empresários.",
-  keywords: "creators, marketing digital, autoridade, viralização, infoprodutos",
+    "Acesse o 4Creators Club: Marketplace de Jobs, Startups e Networking exclusivo para creators e founders.",
+  keywords: "creators, marketplace, jobs, startups, networking, digital",
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
