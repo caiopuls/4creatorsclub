@@ -1,44 +1,47 @@
-useEffect(() => {
-    if (isAnalyzing) {
-        let currentProgress = 0;
+import { useEffect } from "react";
 
-        const simulateProgress = () => {
-            if (currentProgress >= 100) {
-                setTimeout(() => {
-                    window.location.href = "https://pay.kiwify.com.br/OEyEGxp";
-                }, 1000);
-                return;
-            }
+export function useSimulationLogic(isAnalyzing: boolean, setAnalysisProgress: (p: number) => void, setAnalysisStep: (s: number) => void) {
+    useEffect(() => {
+        if (isAnalyzing) {
+            let currentProgress = 0;
 
-            // Random increment between 1 and 3
-            const increment = Math.random() * 2 + 1;
-            currentProgress = Math.min(currentProgress + increment, 100);
-            setAnalysisProgress(currentProgress);
+            const simulateProgress = () => {
+                if (currentProgress >= 100) {
+                    setTimeout(() => {
+                        window.location.href = "https://pay.kiwify.com.br/OEyEGxp";
+                    }, 1000);
+                    return;
+                }
 
-            // Random delay: mostly fast, sometimes slow
-            let delay = Math.random() * 100 + 50; // Normal: 50-150ms
+                // Random increment between 1 and 3
+                const increment = Math.random() * 2 + 1;
+                currentProgress = Math.min(currentProgress + increment, 100);
+                setAnalysisProgress(currentProgress);
 
-            // 10% chance of a "thinking" pause
-            if (Math.random() < 0.1) {
-                delay = Math.random() * 1000 + 500; // Pause: 500-1500ms
-            }
+                // Random delay: mostly fast, sometimes slow
+                let delay = Math.random() * 100 + 50; // Normal: 50-150ms
 
-            setTimeout(simulateProgress, delay);
-        };
+                // 10% chance of a "thinking" pause
+                if (Math.random() < 0.1) {
+                    delay = Math.random() * 1000 + 500; // Pause: 500-1500ms
+                }
 
-        simulateProgress();
+                setTimeout(simulateProgress, delay);
+            };
 
-        // Change text steps based on progress thresholds instead of time
-        const updateSteps = () => {
-            if (currentProgress < 20) setAnalysisStep(0);
-            else if (currentProgress < 45) setAnalysisStep(1);
-            else if (currentProgress < 75) setAnalysisStep(2);
-            else if (currentProgress < 95) setAnalysisStep(3);
-            else setAnalysisStep(4);
+            simulateProgress();
 
-            if (currentProgress < 100) requestAnimationFrame(updateSteps);
-        };
-        updateSteps();
+            // Change text steps based on progress thresholds instead of time
+            const updateSteps = () => {
+                if (currentProgress < 20) setAnalysisStep(0);
+                else if (currentProgress < 45) setAnalysisStep(1);
+                else if (currentProgress < 75) setAnalysisStep(2);
+                else if (currentProgress < 95) setAnalysisStep(3);
+                else setAnalysisStep(4);
 
-    }
-}, [isAnalyzing]);
+                if (currentProgress < 100) requestAnimationFrame(updateSteps);
+            };
+            updateSteps();
+
+        }
+    }, [isAnalyzing]);

@@ -6,7 +6,8 @@ const supabaseAdmin = createClient(
     process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function DELETE(request: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         const { id } = params;
 
@@ -19,7 +20,8 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
 }
 
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         const { id } = params;
         const body = await request.json();
