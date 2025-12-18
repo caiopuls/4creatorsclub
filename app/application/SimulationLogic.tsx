@@ -45,3 +45,4 @@ export function useSimulationLogic(isAnalyzing: boolean, setAnalysisProgress: (p
 
         }
     }, [isAnalyzing]);
+}

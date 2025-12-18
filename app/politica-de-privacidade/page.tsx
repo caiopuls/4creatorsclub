@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 export default function PoliticaPrivacidade() {
   return (
     <main className="min-h-screen">
-      <Navbar onOpenModal={() => { }} />
+      <Navbar />
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-5">
           <motion.div
@@ -35,7 +35,7 @@ export default function PoliticaPrivacidade() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 mt-8">1. Introdução</h2>
                 <p>
-                  O 4Creators Club ("nós", "nosso" ou "clube") está comprometido em proteger sua privacidade. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais quando você utiliza nossos serviços.
+                  O 4Creators Club (&quot;nós&quot;, &quot;nosso&quot; ou &quot;clube&quot;) está comprometido em proteger sua privacidade. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais quando você utiliza nossos serviços.
                 </p>
               </section>
 
@@ -123,7 +123,7 @@ export default function PoliticaPrivacidade() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 mt-8">9. Alterações nesta Política</h2>
                 <p>
-                  Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre alterações significativas publicando a nova política nesta página e atualizando a data de "Última atualização".
+                  Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre alterações significativas publicando a nova política nesta página e atualizando a data de &quot;Última atualização&quot;.
                 </p>
               </section>
 

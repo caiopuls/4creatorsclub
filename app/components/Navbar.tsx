@@ -1,9 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-interface NavbarProps { }
-
 import Link from "next/link";
 
 export default function Navbar() {

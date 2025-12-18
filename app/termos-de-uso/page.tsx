@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 export default function TermosUso() {
   return (
     <main className="min-h-screen">
-      <Navbar onOpenModal={() => { }} />
+      <Navbar />
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-5">
           <motion.div
@@ -35,7 +35,7 @@ export default function TermosUso() {
               <section>
                 <h2 className="text-2xl font-bold mb-4 mt-8">1. Aceitação dos Termos</h2>
                 <p>
-                  Ao acessar e utilizar o site do 4Creators Club ("Site") e nossos serviços, você concorda em cumprir e estar vinculado a estes Termos de Uso. Se você não concorda com qualquer parte destes termos, não deve utilizar nossos serviços.
+                  Ao acessar e utilizar o site do 4Creators Club (&quot;Site&quot;) e nossos serviços, você concorda em cumprir e estar vinculado a estes Termos de Uso. Se você não concorda com qualquer parte destes termos, não deve utilizar nossos serviços.
                 </p>
               </section>
 
