@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Rocket, Briefcase, LayoutGrid, LogOut, Home, User, Menu, Settings, X } from 'lucide-react'
+import { Rocket, Briefcase, LayoutGrid, LogOut, Home, User, Menu, Settings, X, Users } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { Notifications } from './Notifications'
@@ -17,8 +17,9 @@ export function Header() {
 
     const navItems = [
         { label: 'Início', href: '/dashboard', icon: Home },
-        { label: 'Investir', href: '/dashboard/startups', icon: Rocket },
-        { label: 'Jobs', href: '/dashboard/jobs', icon: Briefcase },
+        { label: 'Startups', href: '/dashboard/startups', icon: Rocket },
+        { label: 'Serviços', href: '/dashboard/jobs', icon: Briefcase },
+        { label: 'Creators', href: '/dashboard/creators', icon: Users },
         { label: 'Meus Projetos', href: '/dashboard/my-assets', icon: LayoutGrid },
     ]
 

@@ -1,100 +1,145 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { BookOpen, Lock } from "lucide-react";
 
-interface Level {
-  emoji: string;
-  level: string;
-  trailName: string;
-  objective: string;
-  examples: string[];
+interface SubModule {
+  title: string;
 }
 
-const levels: Level[] = [
+interface Module {
+  title: string;
+  description: string;
+  icon: string;
+  subModules: SubModule[];
+  color: string;
+}
+
+const curriculum: Module[] = [
   {
-    emoji: "🧩",
-    level: "Nível 1 – Criar",
-    trailName: "O Jogo da Atenção",
-    objective: "Dominar o orgânico, entender narrativa e viralização",
-    examples: ["Storytelling", "hooks", "formatos", "copy", "mídia orgânica"],
+    title: "MÓDULO ONBOARDING",
+    description: "Os primeiros passos para alinhar expectativas e começar com o pé direito.",
+    icon: "🔰",
+    color: "text-green-500",
+    subModules: [
+      { title: "Boas-vindas e visão do projeto" },
+      { title: "Acesso às plataformas" },
+      { title: "Apresentação estratégica" },
+      { title: "Playbooks iniciais" }
+    ]
   },
   {
-    emoji: "⚙️",
-    level: "Nível 2 – Construir",
-    trailName: "O Jogo da Execução",
-    objective: "Aprender ferramentas digitais e criar produtos",
-    examples: ["IA aplicada", "vibe-code", "landing pages", "SaaS"],
+    title: "TRILHA CREATOR",
+    description: "Para quem quer viralizar, crescer rápido e ganhar dinheiro com criação de conteúdo.",
+    icon: "🧩",
+    color: "text-pink-500",
+    subModules: [
+      { title: "Fundamentos da Atenção" },
+      { title: "Storytelling e Narrativa" },
+      { title: "Estruturas de Conteúdo Viral" },
+      { title: "Hooks e Copy" },
+      { title: "Edição com Santiago (Pro)" },
+      { title: "Monetização da Audiência" }
+    ]
   },
   {
-    emoji: "💰",
-    level: "Nível 3 – Lucrar",
-    trailName: "O Jogo do Dinheiro",
-    objective: "Aprender a monetizar, vender e escalar",
-    examples: ["Vendas", "monetização", "parcerias", "lançamentos", "MRR"],
+    title: "TRILHA TECH & SAAS BUILDER",
+    description: "Para quem quer criar produtos, SaaS, automações e negócios digitais em escala.",
+    icon: "⚙️",
+    color: "text-blue-500",
+    subModules: [
+      { title: "Seja um Builder" },
+      { title: "Ferramentas e Ambiente" },
+      { title: "Automação e IA" },
+      { title: "Landing Pages que vendem" },
+      { title: "Construindo Seu Primeiro SaaS" },
+      { title: "De MVP a produto escalável" }
+    ]
   },
   {
-    emoji: "🚀",
-    level: "Nível 4 – Expandir",
-    trailName: "O Jogo da Liberdade",
-    objective: "Construir marca, equipe e negócios duradouros",
-    examples: ["Liderança", "produtividade", "branding pessoal", "networking", "equipe"],
-  },
+    title: "TRILHA FOUNDER & NEGÓCIOS",
+    description: "Para quem quer criar uma empresa sólida.",
+    icon: "💰",
+    color: "text-amber-500",
+    subModules: [
+      { title: "Alinhamento Estratégico" },
+      { title: "Finanças para Negócios" }
+    ]
+  }
 ];
 
 export default function Benefits() {
   return (
-    <section className="py-20 border-b border-[#1a1a1a]">
-      <div className="max-w-[1160px] mx-auto px-5">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-extrabold mb-3"
-        >
-          Sua jornada em 4 níveis
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-[#d0d0d0] max-w-2xl mb-12"
-        >
-          Conteúdos gravados e lives para cada nível, além de grupos de networking para acelerar seus resultados.
-        </motion.p>
+    <section className="py-24 border-b border-[#1a1a1a] bg-[#080808]">
+      <div className="max-w-[1000px] mx-auto px-5">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#d4d4d4] text-xs font-bold uppercase tracking-widest mb-6"
+          >
+            Conteúdo Programático
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-extrabold mb-6"
+          >
+            O que você vai aprender na prática
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[#d0d0d0] text-lg max-w-2xl mx-auto"
+          >
+            Acesso total às 3 trilhas fundamentais do digital + onboarding estratégico.
+          </motion.p>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {levels.map((level, idx) => (
+          {curriculum.map((module, idx) => (
             <motion.div
-              key={level.level}
+              key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-[22px] p-6 hover:border-white/20 transition-all duration-300 group"
+              transition={{ delay: idx * 0.1 }}
+              className="border border-[#222] bg-[#0c0c0c] rounded-2xl overflow-hidden p-6 md:p-8 hover:border-white/10 transition-colors"
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-4xl transform group-hover:scale-110 transition-transform duration-300">
-                  {level.emoji}
+              <div className="flex items-center gap-4 mb-6">
+                <div className={`w-12 h-12 rounded-xl bg-[#1a1a1a] border border-[#333] flex items-center justify-center text-2xl ${module.color}`}>
+                  {module.icon}
                 </div>
-                <div className="flex-1">
-                  <div className="text-xs text-[#a9a9a9] mb-1">{level.level}</div>
-                  <h3 className="text-xl font-bold mb-2">{level.trailName}</h3>
-                </div>
+                <h3 className="text-xl font-bold text-white flex-1">
+                  {module.title}
+                </h3>
               </div>
-              <p className="text-[#c9c9c9] text-sm leading-relaxed mb-4">{level.objective}</p>
-              <div>
-                <div className="text-xs text-[#a9a9a9] mb-2">Exemplos de conteúdo:</div>
-                <div className="flex flex-wrap gap-2">
-                  {level.examples.map((example, exampleIdx) => (
-                    <span
-                      key={exampleIdx}
-                      className="px-3 py-1 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] text-xs text-[#d0d0d0]"
-                    >
-                      {example}
-                    </span>
-                  ))}
+
+              <p className="text-[#888] text-sm mb-6 min-h-[40px]">
+                {module.description}
+              </p>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-bold text-[#666] uppercase tracking-wider mb-2">
+                  <span>Módulos</span>
+                  <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
+                    <Lock size={10} />
+                    Em desenvolvimento
+                  </span>
                 </div>
+                {module.subModules.map((sub, subIdx) => (
+                  <div key={subIdx} className="flex items-center gap-3 p-3 rounded-lg bg-[#111] border border-[#1a1a1a]">
+                    <BookOpen className="w-4 h-4 text-[#444]" />
+                    <span className="text-[#d4d4d4] text-sm font-medium">
+                      {sub.title}
+                    </span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           ))}

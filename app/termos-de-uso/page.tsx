@@ -45,7 +45,7 @@ export default function TermosUso() {
                   O 4Creators Club é um clube privado que oferece:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li>Conteúdos gravados e lives sobre marketing orgânico, criação de conteúdo e negócios digitais</li>
+                  <li>Conteúdos gravados sobre marketing orgânico, criação de conteúdo e negócios digitais</li>
                   <li>Cases reais de creators e estratégias comprovadas</li>
                   <li>Ferramentas e softwares com desconto</li>
                   <li>Networking entre creators e empresários</li>

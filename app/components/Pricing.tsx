@@ -15,7 +15,7 @@ export default function Pricing() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-sm font-bold tracking-wide mb-6 backdrop-blur-sm"
+                        className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#d4d4d4] text-xs font-bold uppercase tracking-widest mb-6"
                     >
                         OFERTA EXCLUSIVA DE LANÇAMENTO
                     </motion.div>
@@ -27,7 +27,7 @@ export default function Pricing() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6"
                     >
-                        Torne-se um <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">4c Founder</span>
+                        Torne-se um <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">4C Member</span>
                     </motion.h2>
 
                     <motion.p
@@ -54,7 +54,7 @@ export default function Pricing() {
                     </div>
 
                     <div className="text-center mb-8 mt-4 md:mt-0">
-                        <div className="text-[#888] text-sm font-bold uppercase tracking-wider mb-3">Plano Mensal Founder</div>
+                        <div className="text-[#888] text-sm font-bold uppercase tracking-wider mb-3">Plano Mensal Membro</div>
                         <div className="flex flex-col items-center">
                             <span className="text-lg text-[#666] line-through mb-1 font-medium">R$ 189,90</span>
                             <div className="flex items-baseline gap-1">
@@ -67,11 +67,11 @@ export default function Pricing() {
 
                     <ul className="space-y-4 mb-10">
                         {[
-                            "Acesso aos 4 Níveis da Formação",
-                            "Marketplace de Jobs e Startups",
-                            "Comunidade de Networking",
+                            "Acesso às Trilhas (Creator, Builder, Founder)",
+                            "Marketplace 4C Jobs Ilimitado",
+                            "Comunidade de Networking & Lives",
                             "Selo Founder no perfil",
-                            "Acesso antecipado a novos recursos"
+                            "Playbooks e Materiais de Apoio"
                         ].map((item, i) => (
                             <li key={i} className="flex items-start gap-3 text-[#e0e0e0] text-sm md:text-base">
                                 <div className="w-5 h-5 mt-0.5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">

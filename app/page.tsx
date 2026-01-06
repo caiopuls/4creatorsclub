@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
+import MemberProfiles from "./components/MemberProfiles";
+import PlatformShowcase from "./components/PlatformShowcase";
 import Benefits from "./components/Benefits";
+import ClubSummary from "./components/ClubSummary";
 import Testimonials from "./components/Testimonials";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
-import Ecosystem from "./components/Ecosystem";
 
 export default function Home() {
 
@@ -34,8 +36,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Stats />
+      <MemberProfiles />
+      <PlatformShowcase />
       <Benefits />
-      <Ecosystem />
+      <ClubSummary />
       <Testimonials />
       <Pricing />
       <CTA />

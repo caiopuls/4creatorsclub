@@ -11,8 +11,8 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { label: "Startups Cadastradas", value: "12", prefix: "+ " },
-  { label: "Freelancers Ativos", value: "38", prefix: "+ " },
+  { label: "Projetos Cadastrados", value: "12", prefix: "+ " },
+  { label: "Membros Ativos", value: "38", prefix: "+ " },
   { label: "Vagas Abertas", value: "120", prefix: "+ " },
   { label: "Conteúdos Gravados", value: "50", prefix: "+ " },
 ];
@@ -60,7 +60,7 @@ function AnimatedCounter({ value, prefix, suffix }: { value: string; prefix?: st
   }, [isVisible, value]);
 
   return (
-    <div ref={ref} className="text-5xl md:text-6xl font-extrabold">
+    <div ref={ref} className="text-3xl md:text-4xl font-extrabold text-white">
       {prefix}{Math.floor(count)}{suffix}
     </div>
   );
@@ -68,8 +68,11 @@ function AnimatedCounter({ value, prefix, suffix }: { value: string; prefix?: st
 
 export default function Stats() {
   return (
-    <section className="py-20 border-b border-[#1a1a1a]">
-      <div className="max-w-[1160px] mx-auto px-5">
+    <section className="relative py-10 border-b border-[#1a1a1a] bg-[#050505] overflow-hidden">
+      {/* Dots Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff33_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
+
+      <div className="max-w-[1160px] mx-auto px-5 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -57,43 +57,38 @@ export default function Hero() {
     }, []);
 
     return (
-        <header className="relative pt-16 pb-20 md:pt-24 md:pb-20 overflow-hidden border-b border-[#1a1a1a]">
-            {/* Animated Gradient Background */}
-            <div
-                className="absolute inset-0 z-0 opacity-20"
+        <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-[#0a0a0a]">
+            {/* Background Pattern - White Smoke Dots */}
+            <div className="absolute inset-0 z-0 opacity-[0.1]"
                 style={{
-                    background: "linear-gradient(45deg, #1a1a1a, #333333, #000000, #1a1a1a)",
-                    backgroundSize: "400% 400%",
-                    animation: "gradientOrbits 15s ease infinite"
+                    backgroundImage: 'radial-gradient(#f5f5f5 1px, transparent 1px)',
+                    backgroundSize: '24px 24px'
                 }}
             />
-            <style jsx>{`
-        @keyframes gradientOrbits {
-          0% { background-position: 0% 50% }
-          50% { background-position: 100% 50% }
-          100% { background-position: 0% 50% }
-        }
-      `}</style>
+            {/* Gradient Overlay for Fade */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] opacity-90" />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent opacity-20" />
 
             {/* Content */}
-            <div className="max-w-[1160px] mx-auto px-4 md:px-5 relative z-10 flex flex-col items-center text-center">
+            <div className="relative z-10 max-w-[1200px] mx-auto px-5 flex flex-col items-center">
 
-                {/* Badge */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#d4d4d4] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-8"
                 >
-                    Vagas Limitadas: Membro 4C Club
+                    <span className="inline-block py-1.5 px-4 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase">
+                        Membro 4C Club
+                    </span>
                 </motion.div>
 
-                {/* Headline */}
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight text-center text-white"
+                    className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight text-center text-white"
                 >
                     Clube privado para<br className="md:hidden" />{" "}
                     <span className="inline-flex flex-col h-[1.1em] overflow-hidden justify-end pb-1 min-w-[5ch] md:min-w-[6ch]">
@@ -104,7 +99,7 @@ export default function Hero() {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -40, opacity: 0 }}
                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent"
+                                className="bg-gradient-to-r from-blue-400 via-white to-blue-200 bg-clip-text text-transparent"
                             >
                                 {words[index]}
                             </motion.span>
@@ -113,64 +108,57 @@ export default function Hero() {
                     do digital
                 </motion.h1>
 
-                {/* Subtitle */}
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="max-w-2xl text-[#b0b0b0] text-sm md:text-lg mb-8 md:mb-10 leading-relaxed px-4"
+                    className="mt-6 text-[#d2d2d2] text-center max-w-2xl text-lg md:text-xl leading-relaxed"
                 >
-                    O ecossistema definitivo para quem quer fazer negócios sólidos.
-                    Aprenda com experts, conecte-se com empresas e escale seus resultados.
+                    Aprenda a construir audiência, criar produtos e escalar negócios.
+                    Tudo o que você precisa em um único ecossistema.
                 </motion.p>
 
-                {/* CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="flex flex-col md:flex-row gap-4 mb-16 w-full md:w-auto px-5 md:px-0"
+                    className="mt-10 flex flex-col md:flex-row items-center gap-4 w-full md:w-auto"
                 >
                     <Link
-                        href="/application"
-                        className="inline-flex justify-center items-center gap-2 bg-white text-black text-sm md:text-base font-bold px-6 py-3 md:px-8 md:py-4 rounded-full hover:bg-gray-100 transition-all hover:scale-105 shadow-xl shadow-white/10 w-full md:w-auto"
+                        href="#pricing"
+                        className="w-full md:w-auto px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-gray-100 transition-colors text-center"
                     >
-                        QUERO SER UM MEMBRO
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
+                        Quero ser membro
+                    </Link>
+                    <Link
+                        href="https://wa.me/5548991195678"
+                        target="_blank"
+                        className="w-full md:w-auto px-8 py-4 bg-transparent border border-[#333] text-white font-bold rounded-lg hover:bg-white/5 transition-colors text-center"
+                    >
+                        Falar com consultor
                     </Link>
                 </motion.div>
 
-                {/* KPI Tickler */}
+                {/* KPI Ticker - Updated margin and colors */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="w-full max-w-full overflow-hidden border-t border-[#222] pt-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="mt-20 w-full overflow-hidden border-t border-b border-white/5 bg-black/20 backdrop-blur-sm"
                 >
-                    <p className="text-xs text-[#666] uppercase tracking-widest font-bold mb-4">O que você vai acessar</p>
-                    <div className="relative w-full overflow-hidden">
-                        <div
-                            ref={scrollContainerRef}
-                            className="flex gap-4 overflow-x-hidden whitespace-nowrap"
-                        >
+                    <div className="flex relative" ref={scrollContainerRef}>
+                        <div className="flex animate-scroll whitespace-nowrap py-4">
+                            {/* Content filled by JS auto-scroll or just static map if we prefer simple marquee */}
                             {[...kpiItems, ...kpiItems, ...kpiItems].map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className="px-4 py-2 rounded-lg bg-[#111] border border-[#222] text-[#888] text-xs font-medium"
-                                >
+                                <div key={idx} className="inline-flex items-center mx-6 text-sm md:text-base text-[#666] font-medium uppercase tracking-widest">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-4"></span>
                                     {item}
                                 </div>
                             ))}
                         </div>
-                        {/* Fade edges */}
-                        <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-black to-transparent pointer-events-none" />
-                        <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-black to-transparent pointer-events-none" />
                     </div>
                 </motion.div>
-
             </div>
-        </header>
+        </section>
     );
 }

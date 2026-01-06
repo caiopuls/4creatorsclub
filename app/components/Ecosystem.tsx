@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const features = [
     {
         title: "Marketplace de Jobs",
-        description: "Conecte-se com marcas e clientes em busca de creators. Oportunidades reais de monetização.",
+        description: "Conecte-se com marcas e clientes em busca de negócios. Oportunidades reais de delegar ou vender seu serviço.",
         icon: "💼",
     },
     {
@@ -17,6 +17,12 @@ const features = [
         title: "Networking Curado",
         description: "Acesso a um grupo exclusivo de empresários e creators selecionados a dedo.",
         icon: "🤝",
+    },
+    {
+        title: "Curso 4Creators",
+        description: "Acesso completo a todas as trilhas: Audiência, Construção, Vendas e Escala.",
+        icon: "🎓",
+        status: "Em desenvolvimento",
     },
 ];
 
@@ -52,8 +58,13 @@ export default function Ecosystem() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-[#111] border border-[#222] rounded-3xl p-8 hover:border-white/20 transition-all duration-300"
+                            className="bg-[#111] border border-[#222] rounded-3xl p-8 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
                         >
+                            {feature.status && (
+                                <div className="absolute top-4 right-4 md:top-5 md:right-5 bg-yellow-500/10 text-yellow-500 text-[9px] md:text-[10px] font-bold px-2 py-1 rounded-full border border-yellow-500/20 backdrop-blur-sm z-10">
+                                    {feature.status}
+                                </div>
+                            )}
                             <div className="text-5xl mb-6">{feature.icon}</div>
                             <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
                             <p className="text-[#a0a0a0] leading-relaxed">
