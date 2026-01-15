@@ -6,7 +6,7 @@ interface CTAProps { }
 
 import Link from "next/link";
 
-export default function CTA() {
+export default function CTA({ ctaLink }: { ctaLink?: string }) {
   return (
     <section className="py-20 border-b border-[#1a1a1a]">
       <div className="max-w-[1160px] mx-auto px-5 text-center">
@@ -36,7 +36,7 @@ export default function CTA() {
           className="flex flex-col md:flex-row justify-center gap-4 flex-wrap px-4 md:px-0"
         >
           <Link
-            href="/application"
+            href={ctaLink || "/application"}
             className="inline-flex justify-center items-center gap-2 border border-[#2a2a2a] rounded-full px-5 py-3 md:px-6 md:py-4 bg-[#0c0c0c] text-sm md:text-base font-bold hover:border-white/30 transition-all duration-200 hover:-translate-y-1 cursor-pointer w-full md:w-auto"
           >
             Quero ser um Membro

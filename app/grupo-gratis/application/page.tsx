@@ -1,9 +1,9 @@
 "use client";
 
-import ApplicationForm from "../components/ApplicationForm";
+import ApplicationForm from "../../components/ApplicationForm";
 import Link from "next/link";
 
-export default function ApplicationPage() {
+export default function GrupoGratisApplicationPage() {
     return (
         <main className="min-h-screen bg-[#050505] text-white flex flex-col relative overflow-hidden">
             {/* Background decorations */}
@@ -13,13 +13,13 @@ export default function ApplicationPage() {
             </div>
 
             <nav className="p-6 relative z-10 flex justify-center border-b border-[#1a1a1a]">
-                <Link href="/">
+                <Link href="/grupo-gratis">
                     <img src="https://i.ibb.co/7djtqYqZ/logo-1.png" alt="4Creators Club" className="w-24 opacity-80" />
                 </Link>
             </nav>
 
             <div className="flex-1 flex items-center justify-center p-4 relative z-10">
-                <ApplicationForm redirectUrl="https://pay.kiwify.com.br/OEyEGxp" />
+                <ApplicationForm redirectUrl="https://chat.whatsapp.com/FjfHYbParqg6ZdMuozAeVI?mode=hqrt2" />
             </div>
         </main>
     );

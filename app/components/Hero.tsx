@@ -15,7 +15,7 @@ const kpiItems = [
 
 const words = ["creators", "founders", "builders"];
 
-export default function Hero() {
+export default function Hero({ ctaLink }: { ctaLink?: string }) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
 
@@ -132,7 +132,7 @@ export default function Hero() {
                     className="flex flex-col md:flex-row gap-4 mb-16 w-full md:w-auto px-5 md:px-0"
                 >
                     <Link
-                        href="/application"
+                        href={ctaLink || "/application"}
                         className="inline-flex justify-center items-center gap-2 bg-white text-black text-sm md:text-base font-bold px-6 py-3 md:px-8 md:py-4 rounded-full hover:bg-gray-100 transition-all hover:scale-105 shadow-xl shadow-white/10 w-full md:w-auto"
                     >
                         QUERO SER UM MEMBRO

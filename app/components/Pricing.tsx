@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function Pricing() {
+export default function Pricing({ ctaLink }: { ctaLink?: string }) {
     return (
         <section className="py-24 border-b border-[#1a1a1a] relative overflow-hidden">
             {/* Background glow */}
@@ -85,7 +85,7 @@ export default function Pricing() {
                     </ul>
 
                     <Link
-                        href="/application"
+                        href={ctaLink || "/application"}
                         className="block w-full text-center bg-white text-black font-extrabold text-lg py-4 rounded-xl hover:bg-[#eaeaea] hover:scale-[1.02] transition-all duration-200 shadow-xl shadow-white/5"
                     >
                         QUERO MINHA VAGA
