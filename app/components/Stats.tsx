@@ -41,6 +41,14 @@ function AnimatedCounter({ value, prefix, suffix }: { value: string; prefix?: st
     if (!isVisible) return;
 
     const target = parseInt(value);
+
+    // If value is not a number (e.g. empty string or text), just set it directly
+    if (isNaN(target)) {
+      setCount(0); // or handle differently, but the display below uses prefix/suffix. 
+      // Actually, let's just not run animation for non-numbers.
+      return;
+    }
+
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;
@@ -59,14 +67,23 @@ function AnimatedCounter({ value, prefix, suffix }: { value: string; prefix?: st
     return () => clearInterval(timer);
   }, [isVisible, value]);
 
+  const target = parseInt(value);
+  const isNumber = !isNaN(target);
+
   return (
     <div ref={ref} className="text-3xl md:text-4xl font-extrabold text-white">
-      {prefix}{Math.floor(count)}{suffix}
+      {prefix}{isNumber ? Math.floor(count) : value}{suffix}
     </div>
   );
 }
 
-export default function Stats() {
+interface StatsProps {
+  items?: Stat[];
+}
+
+export default function Stats({ items }: StatsProps) {
+  const displayStats = items || stats;
+
   return (
     <section className="relative py-10 border-b border-[#1a1a1a] bg-[#050505] overflow-hidden">
       {/* Dots Background */}
@@ -80,7 +97,7 @@ export default function Stats() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8"
         >
-          {stats.map((stat, idx) => (
+          {displayStats.map((stat, idx) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}

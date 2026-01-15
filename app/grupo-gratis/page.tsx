@@ -2,16 +2,15 @@
 
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import HeroFree from "../components/HeroFree"; // Changed
 import Stats from "../components/Stats";
-import MemberProfiles from "../components/MemberProfiles";
-import PlatformShowcase from "../components/PlatformShowcase";
-import Benefits from "../components/Benefits";
-import ClubSummary from "../components/ClubSummary";
+import BenefitsFree from "../components/BenefitsFree";
+import ApplicationProcess from "../components/ApplicationProcess";
+// import ClubSummary from "../components/ClubSummary"; // Removed
 import Testimonials from "../components/Testimonials";
+import FlashyCTA from "../components/FlashyCTA"; // Added
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
-import Pricing from "../components/Pricing";
 
 export default function GrupoGratisHome() {
 
@@ -34,14 +33,27 @@ export default function GrupoGratisHome() {
     return (
         <main className="relative min-h-screen bg-[#0a0a0a] text-[#ededed]">
             <Navbar ctaLink="/grupo-gratis/application" />
-            <Hero ctaLink="/grupo-gratis/application" />
-            <Stats />
-            <MemberProfiles />
-            <PlatformShowcase />
-            <Benefits />
-            <ClubSummary />
+            <HeroFree ctaLink="/grupo-gratis/application" />
+
+            <Stats
+                items={[
+                    { label: "Membros no Grupo", value: "850", prefix: "+ " },
+                    { label: "Oportunidades Geradas", value: "140", prefix: "+ " },
+                    { label: "Nichos Diferentes", value: "45", prefix: "+ " },
+                    { label: "Custo de Entrada", value: "", prefix: "Gratuito", suffix: "" },
+                ]}
+            />
+
+            <BenefitsFree />
+
+            <ApplicationProcess />
+
+            {/* Removed ClubSummary */}
+
             <Testimonials />
-            <Pricing ctaLink="/grupo-gratis/application" />
+
+            <FlashyCTA ctaLink="/grupo-gratis/application" />
+
             <CTA ctaLink="/grupo-gratis/application" />
             <Footer />
         </main>

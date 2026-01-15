@@ -15,7 +15,15 @@ const kpiItems = [
 
 const words = ["creators", "founders", "builders"];
 
-export default function Hero({ ctaLink }: { ctaLink?: string }) {
+interface HeroProps {
+    ctaLink?: string;
+    title?: React.ReactNode;
+    subtitle?: string;
+    badgeText?: string;
+    kpiItems?: string[];
+}
+
+export default function Hero({ ctaLink, title, subtitle, badgeText, kpiItems: customKpiItems }: HeroProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [index, setIndex] = useState(0);
 
@@ -38,7 +46,8 @@ export default function Hero({ ctaLink }: { ctaLink?: string }) {
         const scroll = () => {
             if (container.children.length > 0) {
                 const firstChild = container.children[0] as HTMLElement;
-                singleSetWidth = kpiItems.length * (firstChild.offsetWidth + 12);
+                const items = customKpiItems || kpiItems;
+                singleSetWidth = items.length * (firstChild.offsetWidth + 12);
             }
 
             scrollX += 0.5;
@@ -85,7 +94,7 @@ export default function Hero({ ctaLink }: { ctaLink?: string }) {
                     transition={{ duration: 0.6 }}
                     className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[#d4d4d4] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6"
                 >
-                    Vagas Limitadas: Membro 4C Club
+                    {badgeText || "Vagas Limitadas: Membro 4C Club"}
                 </motion.div>
 
                 {/* Headline */}
@@ -95,22 +104,26 @@ export default function Hero({ ctaLink }: { ctaLink?: string }) {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight text-center text-white"
                 >
-                    Clube privado para<br className="md:hidden" />{" "}
-                    <span className="inline-flex flex-col h-[1.1em] overflow-hidden justify-end pb-1 min-w-[5ch] md:min-w-[6ch]">
-                        <AnimatePresence mode="wait">
-                            <motion.span
-                                key={words[index]}
-                                initial={{ y: 40, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -40, opacity: 0 }}
-                                transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent"
-                            >
-                                {words[index]}
-                            </motion.span>
-                        </AnimatePresence>
-                    </span>{" "}
-                    do digital
+                    {title || (
+                        <>
+                            Clube privado para<br className="md:hidden" />{" "}
+                            <span className="inline-flex flex-col h-[1.1em] overflow-hidden justify-end pb-1 min-w-[5ch] md:min-w-[6ch]">
+                                <AnimatePresence mode="wait">
+                                    <motion.span
+                                        key={words[index]}
+                                        initial={{ y: 40, opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: -40, opacity: 0 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                        className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent"
+                                    >
+                                        {words[index]}
+                                    </motion.span>
+                                </AnimatePresence>
+                            </span>{" "}
+                            do digital
+                        </>
+                    )}
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -120,8 +133,7 @@ export default function Hero({ ctaLink }: { ctaLink?: string }) {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="max-w-2xl text-[#b0b0b0] text-sm md:text-lg mb-8 md:mb-10 leading-relaxed px-4"
                 >
-                    O ecossistema definitivo para quem quer fazer negócios sólidos.
-                    Aprenda com experts, conecte-se com empresas e escale seus resultados.
+                    {subtitle || "O ecossistema definitivo para quem quer fazer negócios sólidos. Aprenda com experts, conecte-se com empresas e escale seus resultados."}
                 </motion.p>
 
                 {/* CTA */}
@@ -155,7 +167,7 @@ export default function Hero({ ctaLink }: { ctaLink?: string }) {
                             ref={scrollContainerRef}
                             className="flex gap-4 overflow-x-hidden whitespace-nowrap"
                         >
-                            {[...kpiItems, ...kpiItems, ...kpiItems].map((item, idx) => (
+                            {[...(customKpiItems || kpiItems), ...(customKpiItems || kpiItems), ...(customKpiItems || kpiItems)].map((item, idx) => (
                                 <div
                                     key={idx}
                                     className="px-4 py-2 rounded-lg bg-[#111] border border-[#222] text-[#888] text-xs font-medium"
